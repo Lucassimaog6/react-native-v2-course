@@ -5,9 +5,12 @@ export default function ColorBox({name, color}) {
 	const boxColor = {
 		backgroundColor: color,
 	}
+	const textColor = {
+		color: parseInt(color.replace('#', ''), 16) > 0xffffff / 1.1 ? 'black' : 'white'
+	}
 	return (
 		<View style={[styles.box, boxColor]}>
-			<Text style={styles.text}>{name}: {color}</Text>
+			<Text style={[styles.text, textColor]}>{name}: {color}</Text>
 		</View>
 	)
 }
@@ -15,12 +18,14 @@ export default function ColorBox({name, color}) {
 const styles = {
 	box: {
 		width: '100%',
-		padding: 8,
+		padding: 12,
+		marginBottom: 8,
 		borderRadius: 4,
 		alignItems: 'center'
 	},
 	text: {
-		fontSize: 16,
+		fontSize: 18,
+		fontWeight: 'bold',
 		color: 'white',
 	}
 }
